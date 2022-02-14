@@ -1,0 +1,143 @@
+* static is a modifer.
+* we declare main as static method.
+      public class Hello {
+       public static void main(String args[]){
+           System.out.println("Hello Friends!!!!");
+       }
+    }
+* static method can access other static members.
+
+    public class Demo {
+      int i;
+      public static void main(String args[]){
+      System.out.println(i);
+     }
+   }
+
+   public class Demo2 {
+     public void display(){
+        System.out.println("Hello");
+     }
+     public static void main(String args[]) {
+       display();
+     }
+   }
+The above two codes will show compilation error as in both the cases we are trying to access
+non static member from static member.
+-----------------------------------------------------------------------------------------------
+ public class Demo3 {
+      static int i;
+      public static void main(String args[]){
+      System.out.println(i);
+     }
+   }
+
+   public class Demo4 {
+     public static void display(){
+        System.out.println("Hello");
+     }
+     public static void main(String args[]) {
+       display();
+     }
+   }
+So after declaring i as static and display as static we will be able to see the output.
+
+-----------------------------------------------------------------------------------------------
+Another solution of access non static from static is to create an object and then go for accessing
+the non static member.
+ public class Demo5 {
+     int i;
+      public static void main(String args[]){
+       Demo5 demo=new Demo5();
+       System.out.println(demo.i);   // 0
+     }
+   }
+
+   public class Demo6 {
+     public s void display(){
+        System.out.println("Hello");
+     }
+     public static void main(String args[]) {
+      Demo6 demo=new Demo6(); 
+      demo.display();   // Hello
+     }
+   }
+---------------------------------------------------------------------------------------------------
+static members are not associated with objects rather they are associated with class.
+So we can access static methods and variables with the class name rather than accessing them
+with the object though they can be accessed with the object also
+
+   public class Data {
+     public int num;
+     public static int staticNum;
+    }
+   public class DataMain{
+   public static void main(String args[]) {
+    // For non static member we have create the object of Data class
+     Data data=new Data();
+     System.out.println(data.num);
+    // Try to access non static member with the class name
+    //System.out.println(Data.num);===> This line will show compilation error
+    System.out.println(Data.staticNum); // We can write this statement because
+    // static variables can be accessed by the class 
+    System.out.println(data.staticNum); // Yes we can write this statement also
+   // So conclusion is static members can be accessed by both object name and
+   // the class name where as non static can only be accessed by object and
+   // not by the class name.
+
+  }
+ }
+----------------------------------------------------------
+So why main method is declared as static?
+   So if main method is not static , we have to call the main method alongwith the object of the
+class where main is declared.
+
+   public class Demo {
+     public void main(String args[]) {
+    System.out.println("Hello");
+    }
+  }
+
+// We need to have something as
+
+  Demo demo=new Demo();
+  demo.main();
+// So where we are going to write the above two statements because 
+// main is the starting point of a code in Java.
+
+// We know that static members can be called with the class and
+we don't require any object or instance for calling the static method
+That is the reason main is declared as static. 
+
+So basically what happens is when the class gets loaded , class can call 
+the static main method,
+   
+   public class Demo {
+    public static void main(String args[]) {
+     System.out.println("HEllo");
+   }
+  }
+ 
+   We will compile Demo.java and it will create Demo.class
+  This Demo.class will call the main method it is something like
+  Demo.main();
+-----------------------------------------------------------------------------------------------
+Till now we have seen an example where Employee is having an address and
+address is of type String.
+
+  public class Employee {
+   private int id;
+   private String name;
+   private String address;
+   }
+But if we want that for Address we should have a separate class with the name Address and
+further the Address class will have hno, locality, city, state
+  We can go for associating Employee with Address. 
+    
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
